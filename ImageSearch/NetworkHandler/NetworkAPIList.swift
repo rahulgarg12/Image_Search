@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct NetworkAPIList {
+    let imageSearchApi = "https://www.googleapis.com/customsearch/v1"
+}

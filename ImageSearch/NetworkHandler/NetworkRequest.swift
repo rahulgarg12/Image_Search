@@ -9,20 +9,24 @@
 import Foundation
 
 class NetworkRequest {
+    
     let method: HTTPMethod
-    let path: String
+    let url: String
     var queryItems: [URLQueryItem]?
     var headers: [HTTPHeader]?
     var body: Data?
     
-    init(method: HTTPMethod, path: String) {
+    init(method: HTTPMethod, url: String, headers: [HTTPHeader]? = nil, bodyDict: [String:Any]? = nil) {
         self.method = method
-        self.path = path
+        self.url = url
+        
+        if let headers = headers {
+            self.headers = headers
+        }
+        
+        if let bodyDict = bodyDict {
+            self.body = try? JSONSerialization.data(withJSONObject: bodyDict)
+        }
     }
     
-    init<Body: Encodable>(method: HTTPMethod, path: String, body: Body) throws {
-        self.method = method
-        self.path = path
-        self.body = try JSONEncoder().encode(body)
-    }
 }

@@ -21,35 +21,39 @@ struct NetworkResponse<Body> {
 
 struct APIClient {
     
-    typealias APIClientCompletion = (APIResult<Data?>) -> Void
-    
-    private let session = URLSession.shared
-    private let baseURL = URL(string: "https://jsonplaceholder.typicode.com")!
-    
-    func perform(_ request: NetworkRequest, _ completion: @escaping APIClientCompletion) {
+    func perform(_ request: NetworkRequest?, _ completion: @escaping (APIResult<Data?>) -> Void) {
+        
+        guard let request = request,
+            let url = URL(string: request.url) else {
+            completion(.failure(.invalidURL))
+            return
+        }
         
         var urlComponents = URLComponents()
-        urlComponents.scheme = baseURL.scheme
-        urlComponents.host = baseURL.host
-        urlComponents.path = baseURL.path
+        urlComponents.scheme = url.scheme
+        urlComponents.host = url.host
+        urlComponents.path = url.path
         urlComponents.queryItems = request.queryItems
-        
-        guard let url = urlComponents.url?.appendingPathComponent(request.path) else {
-            completion(.failure(.invalidURL)); return
-        }
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
         urlRequest.httpBody = request.body
         
         request.headers?.forEach { urlRequest.addValue($0.value, forHTTPHeaderField: $0.field) }
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = session.dataTask(with: url) { (data, response, error) in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.requestFailed)); return
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            guard error == nil, let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.requestFailed))
+                return
             }
             
-            completion(.success(NetworkResponse<Data?>(statusCode: httpResponse.statusCode, body: data)))
+            let networkResponse = NetworkResponse<Data?>(statusCode: httpResponse.statusCode,
+                                                         body: data)
+            let success = APIResult.success(networkResponse)
+            completion(success)
         }
         
         task.resume()
