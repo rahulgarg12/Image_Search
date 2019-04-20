@@ -28,14 +28,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             itemCount > indexPath.item
             else { return cell }
         
-        viewModel?.imageModel = viewModel?.imageItems[indexPath.item]
-        cell.configureWith(viewModel: viewModel)
+        let imageViewModel = ImageModelViewModel(model: viewModel?.imageItems[indexPath.item])
+        cell.configureWith(model: imageViewModel)
         
         if itemCount > 0,
             indexPath.item == (itemCount - 1),
             viewModel?.isSearchApiInProgress == false {
             
-            loadMoreImagesFor(searchText: nil)
+            loadMoreImages()
         }
         
         return cell

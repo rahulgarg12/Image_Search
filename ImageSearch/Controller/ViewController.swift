@@ -51,8 +51,7 @@ class ViewController: UIViewController {
 //MARK:- Helper Methods
 extension ViewController {
     
-    func loadMoreImagesFor(searchText: String?) {
-        
+    func loadMoreImages(for searchText: String? = nil) {
         viewModel?.fetchImagesFor(searchText: searchText) { [weak self] success in
             if !success {
                 return
@@ -121,7 +120,7 @@ extension ViewController {
             DispatchQueue.main.async {
                 self.viewModel?.removeCachedDataFor(searchText: searchText)
                 
-                self.loadMoreImagesFor(searchText: searchText)
+                self.loadMoreImages(for: searchText)
             }
         }
         

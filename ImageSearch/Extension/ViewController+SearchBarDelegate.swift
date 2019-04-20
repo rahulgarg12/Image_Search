@@ -42,7 +42,7 @@ extension ViewController: UISearchBarDelegate {
             !cachedItems.isEmpty {
             showCachedDataFoundAlert(searchText: text, cachedItems: cachedItems)
         } else {
-            loadMoreImagesFor(searchText: text)
+            loadMoreImages(for: text)
         }
     }
     

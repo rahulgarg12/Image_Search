@@ -27,7 +27,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
 //MARK:- Outside Accessible Helpers
 extension ImageCollectionViewCell {
     
-    func configureWith(viewModel: ViewModel?) {
-        flickrImageView.kf.setImage(with: viewModel?.imageUrl)
+    func configureWith(model: ImageModelViewModel?) {
+        flickrImageView.kf.setImage(with: model?.imageUrl)
     }
 }

@@ -13,8 +13,6 @@ import RealmSwift
 
 class ViewModel {
     
-    var imageModel: ImageModel?
-    
     var imageItems = [ImageModel]()
     
     var page = 1
@@ -23,40 +21,22 @@ class ViewModel {
     var isSearchApiInProgress = false
     
     
-    //MARK: Properties
-    var imageUrl: URL? {
-        
-        var _imageUrl: String?
-        
-        if let link = imageModel?.link,
-            !link.isEmpty {
-            _imageUrl = link
-        } else if let thumbnail = imageModel?.thumbnailModel?.thumbnailLink,
-            !thumbnail.isEmpty {
-            _imageUrl = thumbnail
-        }
-
-        if let urlString = _imageUrl,
-            let url = URL(string: urlString) {
-            return url
-        }
-
-        return nil
-    }
-    
-    
     //MARK: Helper Methods
     func fetchImagesFor(searchText: String?, completion: @escaping (_ isSuccess: Bool) -> ()) {
         
-        var queryString: String?
+        //if searchText param, then new query and fresh paging
+        //else old query with paging
+        
+        var queryString: String!
         if let _searchText = searchText {
             searchString = _searchText
             queryString = _searchText
         } else if let _searchText = searchString {
             queryString = _searchText
+        } else {
+            return
         }
         
-        guard let _queryString = queryString else { return }
         let _page = ((page-1) * (Int(JSONKeyName().itemsCount) ?? 10)) + 1
         
         isSearchApiInProgress = true
@@ -64,7 +44,7 @@ class ViewModel {
         
         let url = NetworkAPIList().imageSearchApi
             + "?\(JSONKeyName().num)=\(JSONKeyName().itemsCount)"
-            + "&\(JSONKeyName().query)=\(_queryString)"
+            + "&\(JSONKeyName().query)=\(queryString!)"
             + "&\(JSONKeyName().start)=\(_page)"
             + "&\(JSONKeyName().imgSize)=\(JSONKeyName().imageSize)"
             + "&\(JSONKeyName().searchType)=\(JSONKeyName().image)"

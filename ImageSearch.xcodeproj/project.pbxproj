@@ -16,6 +16,7 @@
 		354B12AC2268359200FC5579 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B12AB2268359200FC5579 /* ImageModel.swift */; };
 		354B12B32268C7FA00FC5579 /* DatabaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354B12B22268C7FA00FC5579 /* DatabaseHandler.swift */; };
 		35670207226A2D2A00D364A4 /* ThumbnailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35670206226A2D2A00D364A4 /* ThumbnailModel.swift */; };
+		35A956E1226B69AE00A6EFEC /* ImageModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A956E0226B69AD00A6EFEC /* ImageModelViewModel.swift */; };
 		35FA0EDB22679877007B1FCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FA0EDA22679877007B1FCC /* AppDelegate.swift */; };
 		35FA0EDD22679877007B1FCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FA0EDC22679877007B1FCC /* ViewController.swift */; };
 		35FA0EE222679879007B1FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FA0EE122679879007B1FCC /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		354B12AD2268687900FC5579 /* ImageSearch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImageSearch-Bridging-Header.h"; sourceTree = "<group>"; };
 		354B12B22268C7FA00FC5579 /* DatabaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHandler.swift; sourceTree = "<group>"; };
 		35670206226A2D2A00D364A4 /* ThumbnailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailModel.swift; sourceTree = "<group>"; };
+		35A956E0226B69AD00A6EFEC /* ImageModelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModelViewModel.swift; sourceTree = "<group>"; };
 		35FA0ED722679877007B1FCC /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FA0EDA22679877007B1FCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35FA0EDC22679877007B1FCC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				354B12A62268344500FC5579 /* ViewModel.swift */,
+				35A956E0226B69AD00A6EFEC /* ImageModelViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				354B12AC2268359200FC5579 /* ImageModel.swift in Sources */,
 				354B129F226832CE00FC5579 /* ViewController+SearchBarDelegate.swift in Sources */,
 				354B12B32268C7FA00FC5579 /* DatabaseHandler.swift in Sources */,
+				35A956E1226B69AE00A6EFEC /* ImageModelViewModel.swift in Sources */,
 				35FA0EF122679AB6007B1FCC /* NetworkStruct.swift in Sources */,
 				354B129D2268329900FC5579 /* ViewController+CollectionViewDelegateFlowLayout.swift in Sources */,
 				354B129922682DC200FC5579 /* Enums.swift in Sources */,
